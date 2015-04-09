@@ -12,7 +12,8 @@ const fs = require('fs'),
       body = require('koa-body'),
       json = require('koa-json'),
       methodOverride = require('koa-methodoverride'),
-      router = require('./server/routes'),
+      router = require('./server/router'),
+      wss = require('./server/lib/sockets'),
       app = koa();
 
 app
@@ -34,5 +35,11 @@ app.use(views(path.resolve(__dirname, 'server/views'), {
 app
   .use(router.routes())
   .use(router.allowedMethods());
+
+wss.on('connection', (ws) => {
+  ws.on('message', (message) => {
+    console.log('message: ' + message);
+  });
+});
 
 app.listen(4000);

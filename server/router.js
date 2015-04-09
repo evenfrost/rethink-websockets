@@ -4,7 +4,7 @@ const router = require('koa-router')(),
       send = require('koa-send'),
       serve = require('koa-static'),
       path = require('path'),
-      userRoute = require('./user'),
+      userController = require('./controllers/user'),
       app = require('koa')();
 
 // index route
@@ -26,8 +26,6 @@ router.get('/', function* () {
     );
   }
 
-  require('../lib/users').getList();
-
   yield this.render('index', {
     scripts: scripts,
     styles: styles
@@ -37,17 +35,17 @@ router.get('/', function* () {
 
 // serve jspm config file
 router.get('/config.js', function* (next) {
-  yield send(this, path.resolve(__dirname, '../../jspm.config.js'));
+  yield send(this, path.resolve(__dirname, '../jspm.config.js'));
 });
 
-router.get('/users', userRoute.getList);
+router.get('/users', userController.getList);
 
 // router.get('/test', function* (next) {
 //   this.body = 'Hello, world';
 // });
 
 // serve jspm packages
-router.get(/^\/packages\//, serve(path.resolve(__dirname, '../../client')));
+router.get(/^\/packages\//, serve(path.resolve(__dirname, '../client')));
 
 module.exports = router;
 

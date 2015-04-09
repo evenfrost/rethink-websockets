@@ -3,20 +3,24 @@
 import _ from 'lodash';
 import window from 'github/fetch';
 
-const Index = {
+const ws = {
 
   initialize: () => {
-    Index.openSocket();
+    ws.open();
   },
 
-  openSocket: () => {
-    Index.socket = new WebSocket('ws://localhost:8081');
+  open: () => {
+    ws.socket = new WebSocket('ws://localhost:8081');
 
-    Index.socket.onmessage = Index.onSocketMessage;
+    ws.socket.onmessage = ws.onSocketMessage;
+  },
+
+  send: (message) => {
+    ws.socket.send(message);
   },
 
   onSocketMessage: (event) => {
-    console.log('onSocketMessage');
+    console.log('a message from server');
     console.log(event);
   },
 
@@ -45,4 +49,8 @@ const Index = {
 
 };
 
-Index.initialize();
+ws.initialize();
+
+document.querySelector('button').addEventListener('click', () => {
+  ws.send('a message from client');
+});
