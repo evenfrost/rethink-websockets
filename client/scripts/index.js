@@ -51,6 +51,12 @@ const ws = {
 
 ws.initialize();
 
-document.querySelector('button').addEventListener('click', () => {
-  ws.send('a message from client');
+document.querySelector('button').addEventListener('click', (event) => {
+  var button = event.target;
+
+  // button.dataset.skip = ++button.dataset.skip;
+  ws.send(JSON.stringify({
+    type: 'user',
+    skip: button.dataset.skip++
+  }));
 });

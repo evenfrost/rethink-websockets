@@ -36,10 +36,35 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-wss.on('connection', (ws) => {
-  ws.on('message', (message) => {
-    console.log('message: ' + message);
+// wss.on('connection', (ws) => {
+//   ws.on('message', (message) => {
+//     console.log('message: ' + message);
+//   });
+// });
+
+wss.on('connection')
+  .then((ws) => {
+    // return ws.on('message');
+    ws.on('message', (message) => {
+      console.log(message);
+    });
+  })
+  // .then((message) => {
+  //   console.log('message', message);
+  // })
+  .catch((err) => {
+    console.log('err', err);
   });
-});
+
+// wss.on('connection')
+//   .then((ws) => {
+//     return ws.on('message');
+//   })
+//   .then((message) => {
+//     console.log(message);
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
 
 app.listen(4000);
