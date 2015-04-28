@@ -13,7 +13,7 @@ const fs = require('fs'),
       json = require('koa-json'),
       methodOverride = require('koa-methodoverride'),
       router = require('./server/router'),
-      wss = require('./server/lib/sockets'),
+      // wss = require('./server/lib/ws),
       app = koa();
 
 app
@@ -42,29 +42,94 @@ app
 //   });
 // });
 
-wss.on('connection')
-  .then((ws) => {
-    // return ws.on('message');
-    ws.on('message', (message) => {
-      console.log(message);
-    });
-  })
-  // .then((message) => {
-  //   console.log('message', message);
-  // })
-  .catch((err) => {
-    console.log('err', err);
+const server = app.listen(4000);
+
+// const WebSocketServer = require('./server/lib/ws').Server,
+const WebSocketServer = require('ws').Server,
+      // wss = new WebSocketServer({ port: 8081 }),
+      wss = new WebSocketServer({ server: server });
+// console.log(WebSocketServer.prototype.on);
+let userService = require('./server/services/user');
+
+userService.list()
+  .then((users) => {
+    console.log(users);
   });
 
-// wss.on('connection')
+wss.on('connection', (ws) => {
+  console.log('connected');
+  
+  ws.on('message', (message) => {
+    try {
+      message = JSON.parse(message);
+    } catch (err) {
+      message = {};
+    }
+
+    if (message.type === 'user') {
+      let skip = message.skip || 0;
+
+      userService.get(skip)
+        .then((user) => {
+          console.log(user);
+          ws.send(user);
+        })
+        .catch((err) => {
+          throw err;
+        });
+
+    }
+  });
+
+  ws.on('close', () => {
+    console.log('disconnected');
+  });
+
+});
+
+// wss.on = (type) => {
+//   return new Promise((resolve, reject) => {
+//     try {
+//       wss.on(type, (ws) => {
+//         resolve(ws);
+//       });
+//     } catch (err) {
+//       console.log('err', err);
+//       reject(err);
+//     }
+//   });
+// };
+
+
+// console.log(wss.onAsync);
+// wss.onAsync('connection')
 //   .then((ws) => {
-//     return ws.on('message');
-//   })
-//   .then((message) => {
-//     console.log(message);
+//     console.log('connected');
+
+//     ws.on('message', (message) => {
+//       message = typeof message === 'object' ? JSON.parse(message) : {};
+
+//       if (message.type === 'user') {
+//         let skip = message.skip || 0;
+
+//         userService.get(skip)
+//           .then((user) => {
+//             console.log(user);
+//             ws.send(user);
+//           })
+//           .catch((err) => {
+//             throw err;
+//           });
+
+//       }
+//     });
+
+//     ws.on('close', () => {
+//       console.log('disconnected');
+//     });
+
 //   })
 //   .catch((err) => {
-//     console.error(err);
+//     console.log('err', err);
 //   });
 
-app.listen(4000);

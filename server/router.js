@@ -4,7 +4,7 @@ const router = require('koa-router')(),
       send = require('koa-send'),
       serve = require('koa-static'),
       path = require('path'),
-      userController = require('./controllers/user'),
+      userRoute = require('./routes/user'),
       app = require('koa')();
 
 // index route
@@ -38,7 +38,7 @@ router.get('/config.js', function* (next) {
   yield send(this, path.resolve(__dirname, '../jspm.config.js'));
 });
 
-router.get('/users', userController.getList);
+router.get('/users', userRoute.getList);
 
 // router.get('/test', function* (next) {
 //   this.body = 'Hello, world';
