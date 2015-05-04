@@ -14,6 +14,7 @@ const fs = require('fs'),
       methodOverride = require('koa-methodoverride'),
       router = require('./server/router'),
       // wss = require('./server/lib/ws),
+      jade = require('jade'),
       app = koa();
 
 app
@@ -71,15 +72,16 @@ wss.on('connection', (ws) => {
 
       userService.get(skip)
         .then((user) => {
-          console.log(user);
-          ws.send(user);
+          ws.send(JSON.stringify({ type: 'user', content: user && jade.renderFile('server/views/user.jade', user) }));
         })
         .catch((err) => {
           throw err;
         });
 
     }
+
   });
+  // ws.send('a message from server');
 
   ws.on('close', () => {
     console.log('disconnected');

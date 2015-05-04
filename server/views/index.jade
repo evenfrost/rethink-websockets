@@ -6,7 +6,9 @@ head
 
 body
   main
-    button(data-skip='0') get
+    section.user-list(data-element='user-list')
+    section.user-actions
+      button.user-add(data-element='user-add-button', data-skip='0') get
 
   each script in scripts
     script(src= script)

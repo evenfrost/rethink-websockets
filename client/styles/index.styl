@@ -1,46 +1,62 @@
 @require '../packages/github/necolas/normalize.css@3.0.2/normalize.css'
 
 html, body, main
-  align-items center
+  // align-items center
   background #f6f6f6
   color #444
-  display flex
-  flex-wrap wrap
+  // display flex
+  // flex-wrap wrap
   font-weight 400
   height 100vh
-  justify-content center
+  // justify-content center
   letter-spacing -1px
   overflow hidden
   width 100vw
 
-  main
-    align-items center
-    color #999
-    display flex
-    flex-direction column
-    justify-content center
-    
-    div
-      background #fff
-      cursor pointer
-      font-size 5vw
-      margin 2px 0px
-      padding 10px 20px
-      text-align center
-      width 50vw
-      
+main
+  color #999
+  align-items stretch
+  display flex
+  flex-direction column
+  justify-content center
 
 button
   background #3498db
   border none
-  border-bottom 3px solid #2980b9
+  box-shadow 0 2px 0 #2980b9
   border-radius 2px
   color #fff
   font-weight 600
   outline none
   padding 10px 25px
-  transition border-width .1s
+  position relative
   
   &:active
-    border-bottom-width 0
-  
+    box-shadow none
+    top 2px
+
+.user-list
+.user-actions
+  display flex
+  justify-content center
+
+.user-list
+  align-items center
+  height 80vh
+  flex-direction column
+
+.user
+  background #fff
+  padding 5px 10px
+  margin 1px
+  max-width 600px
+  min-width 200px
+  width 100%
+
+
+  > *
+    margin 1em 0
+
+.user-actions
+  align-items center
+  height 20vh

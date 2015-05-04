@@ -1,0 +1,8 @@
+2015-05-04T17:39:11.573840479 0.018879s notice: Recursively removing directory /home/evenfrost/work/projects/rethinkdb/rethinkdb_data/tmp
+2015-05-04T17:39:11.586343173 0.031382s notice: Initializing directory /home/evenfrost/work/projects/rethinkdb/rethinkdb_data
+2015-05-04T17:39:11.586475390 0.031513s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/evenfrost/work/projects/rethinkdb/rethinkdb_data' did not already exist or is empty.)
+2015-05-04T17:39:11.586507053 0.031545s notice: Running rethinkdb 2.0.1~0utopic (GCC 4.9.1)...
+2015-05-04T17:39:11.588936507 0.033975s notice: Running on Linux 3.19.0-15-generic x86_64
+2015-05-04T17:39:11.588984037 0.034022s notice: Loading data from directory /home/evenfrost/work/projects/rethinkdb/rethinkdb_data
+2015-05-04T17:39:11.808485091 0.253523s info: Automatically using cache size of 3929 MB
+2015-05-04T17:39:11.809098616 0.254136s error: TCP socket creation failed for port 29015: Address already in use.
