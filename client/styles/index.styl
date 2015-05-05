@@ -1,15 +1,19 @@
 @require '../packages/github/necolas/normalize.css@3.0.2/normalize.css'
 
+*, *::before, *::after
+  box-sizing border-box
+
+h1, h2, h3, h4
+  font-weight 100
+
 html, body, main
   // align-items center
   background #f6f6f6
   color #444
   // display flex
   // flex-wrap wrap
-  font-weight 400
   height 100vh
   // justify-content center
-  letter-spacing -1px
   overflow hidden
   width 100vw
 
@@ -32,8 +36,13 @@ button
   position relative
   
   &:active
+  &:disabled
     box-shadow none
     top 2px
+
+  &:disabled
+    transition opacity 0s .2s
+    opacity .5
 
 .user-list
 .user-actions
@@ -47,15 +56,16 @@ button
 
 .user
   background #fff
-  padding 5px 10px
   margin 1px
   max-width 600px
   min-width 200px
+  overflow hidden
+  padding 5px 15px
   width 100%
 
 
   > *
-    margin 1em 0
+    margin 0.5em 0
 
 .user-actions
   align-items center

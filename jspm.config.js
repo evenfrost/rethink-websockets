@@ -15,11 +15,13 @@ System.config({
 
 System.config({
   "map": {
-    "babel": "npm:babel@4.7.16",
-    "babel-runtime": "npm:babel-runtime@4.7.16",
+    "babel": "npm:babel-core@5.2.13",
+    "babel-runtime": "npm:babel-runtime@5.2.13",
+    "core-js": "npm:core-js@0.9.6",
     "github/fetch": "github:github/fetch@0.7.0",
     "lodash": "npm:lodash@3.6.0",
     "normalize.css": "github:necolas/normalize.css@3.0.2",
+    "web-animations": "github:web-animations/web-animations-js@2.0.0",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -100,6 +102,9 @@ System.config({
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "events": "github:jspm/nodelibs-events@0.1.0",
       "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:core-js@0.9.6": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:core-util-is@1.0.1": {

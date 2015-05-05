@@ -17,11 +17,13 @@ module.exports.list = () => {
 module.exports.get = (skip) => {
   const r = require('rethinkdbdash')();
 
-  skip = skip || 0;
+  skip = +skip || 0;
+  console.log('skip', skip);
 
   return new Promise((resolve, reject) => {
     r.table('users').skip(skip).limit(1).run()
       .then((users) => {
+        console.log(users);
         resolve(users[0]);
       })
       .catch((err) => {

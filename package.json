@@ -55,11 +55,13 @@
     "dependencies": {
       "github/fetch": "github:github/fetch@^0.7.0",
       "lodash": "npm:lodash@^3.3.0",
-      "normalize.css": "github:necolas/normalize.css@^3.0.2"
+      "normalize.css": "github:necolas/normalize.css@^3.0.2",
+      "web-animations/web-animations-js": "github:web-animations/web-animations-js@^2.0.0"
     },
     "devDependencies": {
-      "babel": "npm:babel@^4.7.16",
-      "babel-runtime": "npm:babel-runtime@^4.7.16"
+      "babel": "npm:babel-core@^5.1.13",
+      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "core-js": "npm:core-js@^0.9.4"
     }
   }
 }

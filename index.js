@@ -68,10 +68,10 @@ wss.on('connection', (ws) => {
     }
 
     if (message.type === 'user') {
-      let skip = message.skip || 0;
 
-      userService.get(skip)
+      userService.get(message.skip)
         .then((user) => {
+          console.log('user', user);
           ws.send(JSON.stringify({ type: 'user', content: user && jade.renderFile('server/views/user.jade', user) }));
         })
         .catch((err) => {

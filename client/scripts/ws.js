@@ -13,14 +13,13 @@ export const ws = {
   },
 
   send: (message) => {
-    console.log(message);
     ws.socket.send(message);
   },
 
   onmessage: (event) => {
     let data = event.data ? JSON.parse(event.data) : {};
     
-    if (data.type && data.content) {
+    if (data.type) {
       let socketEvent = new CustomEvent('message.' + data.type, { detail: data.content });
       ws.socket.dispatchEvent(socketEvent);
     }
