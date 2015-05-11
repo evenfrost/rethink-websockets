@@ -109,9 +109,7 @@ gulp.task('dev', function () {
     script: 'index.js',
     ext: 'js jade',
     ignore: ['client/**', 'public/**'],
-    execMap: {
-      'js': 'iojs --harmony_arrow_functions'
-    }
+    exec: 'babel-node'
   });
 });
 
