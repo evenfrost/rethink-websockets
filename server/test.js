@@ -24,9 +24,11 @@ co(function* () {
   let articles = yield r.table('articles');
 
   let filter = yield r.table('articles').filter(r.row('name').eq('Test article'));
-  let count = yield r.table('articles').filter({ name: 'Test article' }).pluck('comments');
-  console.log(articles);
-  console.log(filter);
-  console.log(count);
+  let count = yield r.table('articles').filter({ name: 'Test article' }).nth(0).getField('comments').count();
+
+  console.log('articles', articles);
+  console.log('filter', filter);
+  console.log('count', count);
+  
   // articles.toArray().then(articles => console.log(articles));
 });
