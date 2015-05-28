@@ -18,6 +18,7 @@ export const ws = {
 
   onmessage: (event) => {
     let data = event.data ? JSON.parse(event.data) : {};
+    console.log('data', data);
     
     if (data.type) {
       let socketEvent = new CustomEvent('message.' + data.type, { detail: data.content });

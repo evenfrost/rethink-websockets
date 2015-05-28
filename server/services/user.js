@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.list = () => {
+export const list = () => {
   const r = require('rethinkdbdash')();
 
   return new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ module.exports.list = () => {
   });
 };
 
-module.exports.get = (skip) => {
+export const get = (skip) => {
   const r = require('rethinkdbdash')();
 
   skip = +skip || 0;
