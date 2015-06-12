@@ -15,7 +15,7 @@ import send from 'koa-send';
 import jade from 'jade';
 
 import * as userService from './server/services/user';
-import socketService from './server/services/socket';
+import socket from './server/lib/socket';
 import './server/test.js';
 
 const router = require('koa-router')();
@@ -86,4 +86,4 @@ app
 
 const server = app.listen(4000);
 
-socketService(server);
+socket(server);

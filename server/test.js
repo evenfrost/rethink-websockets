@@ -21,6 +21,14 @@ export default (ws) => {
     r.table('articles').changes().run({ cursor: true })
       .then(cursor => cursor.each((err, row) => ws.send(JSON.stringify({ type: 'article', content: row }))));
 
+    // let count = yield r.table('articles').map(x => 1).reduce((a, b) => a + b);
+    let count = yield r.table('articles').map(function (x) {
+      return 1;
+    }).reduce(function (a, b) {
+      return a.add(b);
+    });
+    console.log('count', count);
+
     // let filter = yield r.table('articles').filter(r.row('name').eq('Test article'));
     // let count = yield r.table('articles').filter({ name: 'Test article' }).nth(0).getField('comments').count();
 
