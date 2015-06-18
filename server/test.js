@@ -6,8 +6,6 @@ import rethinkdbdash from 'rethinkdbdash';
 
 const r = rethinkdbdash();
 
-export default (ws) => {
-
   co(function* () {
     let users = yield r.table('users');
 
@@ -22,11 +20,7 @@ export default (ws) => {
       .then(cursor => cursor.each((err, row) => ws.send(JSON.stringify({ type: 'article', content: row }))));
 
     // let count = yield r.table('articles').map(x => 1).reduce((a, b) => a + b);
-    let count = yield r.table('articles').map(function (x) {
-      return 1;
-    }).reduce(function (a, b) {
-      return a.add(b);
-    });
+    let count = yield r.table('articles').map(x => 1).reduce((a, b) => { return a.add(b); });
     console.log('count', count);
 
     // let filter = yield r.table('articles').filter(r.row('name').eq('Test article'));
@@ -38,5 +32,3 @@ export default (ws) => {
     
     // articles.toArray().then(articles => console.log(articles));
   });
-
-};
